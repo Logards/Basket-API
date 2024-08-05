@@ -1,4 +1,4 @@
-# For local development
+# For local developpement
 
 version: '3.7'
 services:
