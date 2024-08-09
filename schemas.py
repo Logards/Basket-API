@@ -2,6 +2,10 @@ from pydantic import BaseModel
 
 
 class UserSchema(BaseModel):
-    id: int
+    email: str
+    password: str
+
+
+class UserConnectSchema(BaseModel):
     email: str
     password: str
