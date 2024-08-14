@@ -45,5 +45,5 @@ async def get_user(user_email: str, db: Session = Depends(get_db)):
 async def connect_user(user: schemas.UserConnectSchema, db: Session = Depends(get_db)):
     db_user = cruds.connect_user(db, user)
     if db_user is None:
-        raise HTTPException(status_code=404, detail=db_user)
+        raise HTTPException(status_code=404, detail="User not found")
     return db_user

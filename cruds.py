@@ -14,11 +14,9 @@ def get_user(db: Session, user_email: str):
 
 
 def connect_user(db: Session, user: schemas.UserConnectSchema):
-    db_user = get_user(db, user.email)
-    if db_user is None:
-        return "User not found"
-    if verify_password(user.password, db_user.password) is False:
-        return "Invalid password"
+    db_user = db.query(models.User).filter(models.User.email == user.email).first()
+    if db_user is None or not bcrypt.checkpw(user.password.encode('utf-8'), db_user.password.encode('utf-8')):
+        return None
     return db_user
 
 
